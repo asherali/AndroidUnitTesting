@@ -83,13 +83,6 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     @Override
     public void showProgressBar(boolean isInProgress) {
 
-        if (isInProgress)
-        {
-            progressBar.setVisibility(View.VISIBLE);
-        }
-        else
-        {
-            progressBar.setVisibility(View.GONE);
-        }
+        progressBar.setVisibility(isInProgress ? View.VISIBLE : View.GONE);
     }
 }
