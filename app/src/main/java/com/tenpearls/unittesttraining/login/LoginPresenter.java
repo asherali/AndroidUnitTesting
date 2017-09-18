@@ -6,7 +6,7 @@ import com.tenpearls.unittesttraining.R;
 import com.tenpearls.unittesttraining.utils.ValidationUtil;
 
 /**
- * Created by asher.ali on 8/21/2017.
+ * Class Created by asher.ali on 8/21/2017.
  */
 
 public class LoginPresenter implements LoginContract.UserActionListener
@@ -41,10 +41,8 @@ public class LoginPresenter implements LoginContract.UserActionListener
             loginView.showPasswordError();
             return;
         }
-
         login(userName,password);
-
-    }
+}
 
     private void login(final String userName, final String password)
     {
