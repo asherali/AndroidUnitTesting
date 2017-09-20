@@ -9,11 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity" android:label="@string/unit_testing" />
+        <activity android:name=".MainActivity" />
         <activity
             android:name=".login.LoginActivity"
             android:screenOrientation="portrait"
-            android:label="@string/login"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,7 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".signup.SignUpActivity" android:label="@string/signup"/>
+        <activity android:name=".signup.SignUpActivity"/>
     </application>
 
 </manifest>

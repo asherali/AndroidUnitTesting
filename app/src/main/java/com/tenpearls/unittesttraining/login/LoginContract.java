@@ -25,8 +25,8 @@ public interface LoginContract {
     // Presenter implements UserActionListener, so view calls method from this presenter
      interface UserActionListener
     {
-        void onLoginClicked();
-
+        void onLoginClicked(String username, String password);
+        boolean isValidLoginCredentials(String username, String password);
     }
 
 }
