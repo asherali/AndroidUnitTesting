@@ -1,8 +1,9 @@
-package com.tenpearls.unittesttraining;
+package com.tenpearls.unittesttraining.login;
 
 import android.support.test.annotation.UiThreadTest;
 import android.support.test.runner.AndroidJUnit4;
 
+import com.tenpearls.unittesttraining.R;
 import com.tenpearls.unittesttraining.login.LoginContract;
 import com.tenpearls.unittesttraining.login.LoginPresenter;
 
