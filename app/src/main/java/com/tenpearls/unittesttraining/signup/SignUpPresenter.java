@@ -40,7 +40,7 @@ public class SignUpPresenter implements SignUpContract.UserActionListener {
             return;
         }
 
-        if (!ValidationUtil.isValidPassword(confirmPassword) && !password.equals(confirmPassword))
+        if (!ValidationUtil.isValidPassword(confirmPassword) || !password.equals(confirmPassword))
         {
             signUpView.showConfirmPasswordError();
             return;

@@ -4,8 +4,6 @@ import android.support.test.annotation.UiThreadTest;
 import android.support.test.runner.AndroidJUnit4;
 
 import com.tenpearls.unittesttraining.R;
-import com.tenpearls.unittesttraining.login.LoginContract;
-import com.tenpearls.unittesttraining.login.LoginPresenter;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -80,7 +78,7 @@ public class LoginInstrumentedTest {
     {
 
 
-        Mockito.when((loginView.getUsername())).thenReturn("asher@ali.com");
+        Mockito.when((loginView.getUsername())).thenReturn("asher@10p.com");
         Mockito.when(loginView.getPassword()).thenReturn("Test@123");
 
         loginPresenter.onLoginClicked();
