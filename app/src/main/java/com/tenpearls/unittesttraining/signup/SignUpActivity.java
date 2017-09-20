@@ -39,7 +39,7 @@ public class SignUpActivity extends AppCompatActivity implements SignUpContract.
     public void onClick(View view) {
         switch (view.getId())
         {
-            case R.id.btnLogin:
+            case R.id.btnSignUp:
                 signUpPresenter.onSignUpClicked();
 
                 break;

@@ -11,12 +11,13 @@ import android.widget.Toast;
 
 import com.tenpearls.unittesttraining.MainActivity;
 import com.tenpearls.unittesttraining.R;
+import com.tenpearls.unittesttraining.signup.SignUpActivity;
 
 public class LoginActivity extends AppCompatActivity implements LoginContract.View,View.OnClickListener
 {
 
     EditText etUserName,etPassword;
-    AppCompatButton btnLogin ;
+    AppCompatButton btnLogin,btnSignUp ;
     LoginContract.UserActionListener loginPresenter;
     ProgressBar progressBar;
 
@@ -29,12 +30,13 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         etUserName =  findViewById(R.id.etUserName);
         etPassword =  findViewById(R.id.etPassword);
         btnLogin   =  findViewById(R.id.btnLogin);
+        btnSignUp  =  findViewById(R.id.btnSignUp);
         progressBar = findViewById(R.id.progressBar);
 
 
         loginPresenter = new LoginPresenter(this);
         btnLogin.setOnClickListener(this);
-
+        btnSignUp.setOnClickListener(this);
     }
 
     @Override
@@ -45,6 +47,9 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
             case R.id.btnLogin:
                loginPresenter.onLoginClicked();
 
+                break;
+            case R.id.btnSignUp:
+                startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
                 break;
         }
     }

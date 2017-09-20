@@ -1,4 +1,4 @@
-package com.tenpearls.unittesttraining;
+package com.tenpearls.unittesttraining.login;
 
 import com.tenpearls.unittesttraining.utils.ValidationUtil;
 

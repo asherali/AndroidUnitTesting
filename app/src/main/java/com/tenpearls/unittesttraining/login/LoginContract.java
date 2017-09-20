@@ -26,6 +26,7 @@ public interface LoginContract {
      interface UserActionListener
     {
         void onLoginClicked();
+
     }
 
 }
