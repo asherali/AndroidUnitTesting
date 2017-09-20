@@ -4,11 +4,8 @@
     <string name="password">Password</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="login">Login</string>
-    <string name="signup">Sign Up</string>
     <string name="username_error">Username incorrect</string>
     <string name="password_error">Password incorrect</string>
     <string name="confirm_password_error">Passwords do not match</string>
     <string name="login_failed">Login failed</string>
-    <string name="signup_failed">SignUp failed</string>
-    <string name="unit_testing">Unit Testing</string>
 </resources>

@@ -25,24 +25,27 @@ public class LoginPresenter implements LoginContract.UserActionListener
     }
 
     @Override
-    public void onLoginClicked() {
+    public void onLoginClicked(String username, String password) {
+        login(username,password);
+}
 
-        String userName = loginView.getUsername();
-        String password = loginView.getPassword();
+    @Override
+    public boolean isValidLoginCredentials(String username, String password) {
 
-        if (!ValidationUtil.isValidEmailAddress(userName))
+        if (!ValidationUtil.isValidEmailAddress(username))
         {
             loginView.showUsernameError();
-            return;
+            return false;
         }
 
         if (!ValidationUtil.isValidPassword(password))
         {
             loginView.showPasswordError();
-            return;
+            return false;
         }
-        login(userName,password);
-}
+
+        return true;
+    }
 
     private void login(final String userName, final String password)
     {

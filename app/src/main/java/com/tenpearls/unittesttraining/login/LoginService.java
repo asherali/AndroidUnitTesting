@@ -4,6 +4,6 @@ package com.tenpearls.unittesttraining.login;
 
      boolean login(String username, String password)
     {
-        return "asher@10p.com".equals(username) && "Test@123".equals(password);
+        return "asher@ali.com".equals(username) && "Test@123".equals(password);
     }
 }
