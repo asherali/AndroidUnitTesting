@@ -27,11 +27,14 @@ public class UserInstrumentedTest {
     @Test
     public void test_is_user_parcelable()
     {
-
+        // Obtain a Parcel object and write the parcelable object to it
         Parcel parcel = Parcel.obtain();
         user.writeToParcel(parcel, user.describeContents());
+
+        // After you're done with writing, you need to reset the parcel for reading
         parcel.setDataPosition(0);
 
+        // Reconstruct object from parcel and asserts for confirmation
         User createdFromParcel = User.CREATOR.createFromParcel(parcel);
         assertThat(createdFromParcel.getUserName(), is("asherali@10p.com"));
         assertThat(createdFromParcel.getPassword(), is("Test@123"));
