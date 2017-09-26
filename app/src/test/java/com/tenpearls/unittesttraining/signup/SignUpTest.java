@@ -1,7 +1,5 @@
 package com.tenpearls.unittesttraining.signup;
 
-import android.test.UiThreadTest;
-
 import com.tenpearls.unittesttraining.R;
 
 import org.junit.Before;
@@ -22,7 +20,6 @@ public class SignUpTest {
     @Mock
     SignUpContract.View signUpView;
 
-    @UiThreadTest
     @Before
     public void setup()
     {
