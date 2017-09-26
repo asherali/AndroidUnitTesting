@@ -20,8 +20,7 @@ public class SignUpContract {
         void onSignUpSuccess();
         void onSignUpFailure(int resId);
 
-        void showProgressBar(boolean isInProgress);
-    }
+     }
 
     interface UserActionListener
     {

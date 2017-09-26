@@ -1,12 +1,11 @@
 package com.tenpearls.unittesttraining.login;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatButton;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.tenpearls.unittesttraining.MainActivity;
@@ -19,7 +18,6 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     EditText etUserName,etPassword;
     AppCompatButton btnLogin,btnSignUp ;
     LoginContract.UserActionListener loginPresenter;
-    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +29,6 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         etPassword =  findViewById(R.id.etPassword);
         btnLogin   =  findViewById(R.id.btnLogin);
         btnSignUp  =  findViewById(R.id.btnSignUp);
-        progressBar = findViewById(R.id.progressBar);
 
 
         loginPresenter = new LoginPresenter(this);
@@ -86,9 +83,5 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         Toast.makeText(this,getString(resId),Toast.LENGTH_SHORT).show();
     }
 
-    @Override
-    public void showProgressBar(boolean isInProgress) {
 
-        progressBar.setVisibility(isInProgress ? View.VISIBLE : View.GONE);
-    }
 }

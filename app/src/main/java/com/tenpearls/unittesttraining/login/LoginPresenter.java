@@ -1,7 +1,5 @@
 package com.tenpearls.unittesttraining.login;
 
-import android.os.Handler;
-
 import com.tenpearls.unittesttraining.R;
 import com.tenpearls.unittesttraining.pojo.User;
 import com.tenpearls.unittesttraining.utils.ValidationUtil;
@@ -15,14 +13,12 @@ public class LoginPresenter implements LoginContract.UserActionListener
 
     private LoginContract.View loginView;
     private LoginService loginService;
-    private Handler handler;
     private User user;
 
     public LoginPresenter(LoginContract.View loginView)
     {
         this.loginView = loginView;
         loginService = new LoginService();
-        handler = new Handler();
         user = new User();
     }
 
@@ -48,21 +44,13 @@ public class LoginPresenter implements LoginContract.UserActionListener
 
     private void login(final String userName, final String password)
     {
-        loginView.showProgressBar(true);
 
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
+        boolean isLoginSuccess = loginService.login(userName,password);
+        if (isLoginSuccess)
+            loginView.onLoginSuccess();
+        else
+            loginView.onLoginFailure(R.string.login_failed);
 
-                boolean isLoginSuccess = loginService.login(userName,password);
-                loginView.showProgressBar(false);
-
-                if (isLoginSuccess)
-                    loginView.onLoginSuccess();
-                else
-                    loginView.onLoginFailure(R.string.login_failed);
-            }
-        }, 1000);
     }
 
 }

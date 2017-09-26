@@ -1,105 +1,78 @@
 package com.tenpearls.unittesttraining.login;
 
-import com.tenpearls.unittesttraining.utils.ValidationUtil;
+import com.tenpearls.unittesttraining.R;
 
-import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 
-/**
- * Created by asher.ali on 8/21/2017.
- *
- *
- */
 
 public class LoginTest {
 
+    private LoginPresenter loginPresenter;
 
-    //// Email Validation ////
+    @Mock
+    LoginContract.View loginView;
 
 
-    @Test
-    public void emailValidation_CorrectEmailSimple_ReturnsTrue() {
-        Assert.assertTrue(ValidationUtil.isValidEmailAddress("asher@email.com"));
-    }
 
-    @Test
-    public void emailValidation_CorrectEmailSubDomain_ReturnsTrue() {
-        Assert.assertTrue(ValidationUtil.isValidEmailAddress("asher@email.co.uk"));
-    }
-
-    @Test
-    public void emailValidation_InvalidEmailNoTld_ReturnsFalse() {
-        Assert.assertFalse(ValidationUtil.isValidEmailAddress("asher@email"));
-    }
-
-    @Test
-    public void emailValidation_InvalidEmailDoubleDot_ReturnsFalse() {
-        Assert.assertFalse(ValidationUtil.isValidEmailAddress("asher@email..com"));
-    }
-
-    @Test
-    public void emailValidation_InvalidEmailNoUsername_ReturnsFalse() {
-        Assert.assertFalse(ValidationUtil.isValidEmailAddress("@email.com"));
-    }
-
-    @Test
-    public void emailValidation_EmptyString_ReturnsFalse() {
-        Assert.assertFalse(ValidationUtil.isValidEmailAddress(""));
-    }
-
-    @Test
-    public void emailValidation_NullEmail_ReturnsFalse() {
-        Assert.assertFalse(ValidationUtil.isValidEmailAddress(null));
-    }
-
-    // Password validation //
-
-    @Test
-    public void passwordValidation_correctPassword_ReturnsTrue()
+    @Before
+    public void setup()
     {
-        Assert.assertTrue(ValidationUtil.isValidPassword("Test@123"));
-    }
-    @Test
-    public void passwordValidation_noDigit_ReturnsFalse()
-    {
-        Assert.assertFalse(ValidationUtil.isValidPassword("Test@abc"));
-    }
-    @Test
-    public void passwordValidation_noLowerCaseLetter_ReturnsFalse()
-    {
-        Assert.assertFalse(ValidationUtil.isValidPassword("TEST@123"));
-    }
-    @Test
-    public void passwordValidation_noUpperCaseLetter_ReturnsFalse()
-    {
-        Assert.assertFalse(ValidationUtil.isValidPassword("test@123"));
-    }
-    @Test
-    public void passwordValidation_noSpecialCharacter_ReturnsFalse()
-    {
-        Assert.assertFalse(ValidationUtil.isValidPassword("Test1234"));
-    }
-    @Test
-    public void passwordValidation_whitespaceExist_returnsFalse()
-    {
-        Assert.assertFalse(ValidationUtil.isValidPassword("Test @123"));
+        MockitoAnnotations.initMocks(this);
+        loginPresenter = new LoginPresenter(loginView);
+
     }
 
     @Test
-    public void passwordValidation_passwordUnderLimit_returnsFalse()
+    public void showErrorMessage_UsernameInvalid() throws Exception
     {
-        Assert.assertFalse(ValidationUtil.isValidPassword("Test@12"));
+        Mockito.when((loginView.getUsername())).thenReturn("@ali.com");
+        Mockito.when(loginView.getPassword()).thenReturn("Test@123");
+
+        loginPresenter.onLoginClicked();
+
+        Mockito.verify(loginView).showUsernameError();
     }
 
     @Test
-    public void passwordValidation_passwordEmpty_returnsFalse()
+    public void showErrorMessage_PasswordInvalid() throws Exception
     {
-        Assert.assertFalse(ValidationUtil.isValidPassword(""));
+        Mockito.when((loginView.getUsername())).thenReturn("asher@ali.com");
+        Mockito.when(loginView.getPassword()).thenReturn("123test");
+
+        loginPresenter.onLoginClicked();
+
+        Mockito.verify(loginView).showPasswordError();
+    }
+
+
+    @Test
+    public void showErrorMessage_loginFailed() throws Exception
+    {
+
+
+        Mockito.when((loginView.getUsername())).thenReturn("asher@ali.com");
+        Mockito.when(loginView.getPassword()).thenReturn("123@Test");
+
+        loginPresenter.onLoginClicked();
+
+        Mockito.verify(loginView).onLoginFailure(R.string.login_failed);
     }
 
     @Test
-    public void passwordValidation_passwordNull_returnsFalse()
+    public void showErrorMessage_loginSuccess() throws Exception
     {
-        Assert.assertFalse(ValidationUtil.isValidPassword(null));
+
+
+        Mockito.when((loginView.getUsername())).thenReturn("asher@10p.com");
+        Mockito.when(loginView.getPassword()).thenReturn("Test@123");
+
+        loginPresenter.onLoginClicked();
+
+        Mockito.verify(loginView).onLoginSuccess();
     }
+
 }

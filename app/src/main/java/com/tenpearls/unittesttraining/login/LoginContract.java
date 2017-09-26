@@ -18,8 +18,6 @@ public interface LoginContract {
         void onLoginSuccess();
         void onLoginFailure(int resId);
 
-        void showProgressBar(boolean isInProgress);
-
     }
 
     // Presenter implements UserActionListener, so view calls method from this presenter

@@ -1,7 +1,5 @@
 package com.tenpearls.unittesttraining.signup;
 
-import android.os.Handler;
-
 import com.tenpearls.unittesttraining.R;
 import com.tenpearls.unittesttraining.utils.ValidationUtil;
 
@@ -13,13 +11,11 @@ public class SignUpPresenter implements SignUpContract.UserActionListener {
 
     private SignUpContract.View signUpView;
     private SignUpService signUpService;
-    private Handler handler;
 
-    public SignUpPresenter(SignUpContract.View view)
+   public SignUpPresenter(SignUpContract.View view)
     {
         signUpView = view;
         signUpService = new SignUpService();
-        handler = new Handler();
     }
 
     @Override
@@ -51,20 +47,11 @@ public class SignUpPresenter implements SignUpContract.UserActionListener {
 
     private void signUp(final String userName, final String password)
     {
-        signUpView.showProgressBar(true);
+        boolean isLoginSuccess = signUpService.signUp(userName,password);
+        if (isLoginSuccess)
+            signUpView.onSignUpSuccess();
+        else
+            signUpView.onSignUpFailure(R.string.signup_failed);
 
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-
-                boolean isLoginSuccess = signUpService.signUp(userName,password);
-                signUpView.showProgressBar(false);
-
-                if (isLoginSuccess)
-                    signUpView.onSignUpSuccess();
-                else
-                    signUpView.onSignUpFailure(R.string.signup_failed);
-            }
-        }, 1000);
     }
 }
