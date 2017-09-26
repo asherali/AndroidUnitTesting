@@ -16,8 +16,6 @@ public class LoginTest {
     @Mock
     LoginContract.View loginView;
 
-
-
     @Before
     public void setup()
     {
