@@ -78,6 +78,7 @@ public class SignUpActivity extends AppCompatActivity implements SignUpContract.
 
     @Override
     public void onSignUpSuccess() {
+        Toast.makeText(this, getString(R.string.signup_success),Toast.LENGTH_SHORT).show();
         startActivity(new Intent(SignUpActivity.this, MainActivity.class));
         finish();
     }

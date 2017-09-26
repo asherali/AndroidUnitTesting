@@ -76,6 +76,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
 
     @Override
     public void onLoginSuccess() {
+        Toast.makeText(this, getString(R.string.login_success),Toast.LENGTH_SHORT).show();
         startActivity(new Intent(LoginActivity.this, MainActivity.class));
         //finish();
     }

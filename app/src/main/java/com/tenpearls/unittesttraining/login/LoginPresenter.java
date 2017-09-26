@@ -3,6 +3,7 @@ package com.tenpearls.unittesttraining.login;
 import android.os.Handler;
 
 import com.tenpearls.unittesttraining.R;
+import com.tenpearls.unittesttraining.pojo.User;
 import com.tenpearls.unittesttraining.utils.ValidationUtil;
 
 /**
@@ -15,33 +16,34 @@ public class LoginPresenter implements LoginContract.UserActionListener
     private LoginContract.View loginView;
     private LoginService loginService;
     private Handler handler;
-
+    private User user;
 
     public LoginPresenter(LoginContract.View loginView)
     {
         this.loginView = loginView;
         loginService = new LoginService();
         handler = new Handler();
+        user = new User();
     }
 
     @Override
     public void onLoginClicked() {
 
-        String userName = loginView.getUsername();
-        String password = loginView.getPassword();
+        user.setUserName(loginView.getUsername());
+        user.setPassword(loginView.getPassword());
 
-        if (!ValidationUtil.isValidEmailAddress(userName))
+        if (!ValidationUtil.isValidEmailAddress(user.getUserName()))
         {
             loginView.showUsernameError();
             return;
         }
 
-        if (!ValidationUtil.isValidPassword(password))
+        if (!ValidationUtil.isValidPassword(user.getPassword()))
         {
             loginView.showPasswordError();
             return;
         }
-        login(userName,password);
+        login(user.getUserName(),user.getPassword());
 }
 
     private void login(final String userName, final String password)
